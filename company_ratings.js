@@ -1,2 +1,1 @@
-var users = require('./result.json');
-console.log(users)
+var companies = require('./result.json');
