@@ -8,4 +8,4 @@ Python:
 * requests
 * urllib.request
 * time
-* bs4 BeautifulSoup)
+* bs4 (BeautifulSoup)
