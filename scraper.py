@@ -3,9 +3,10 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 
-
-def scraper(url)
-    url = 'https://www.ethicalconsumer.org/food-drink/shopping-guide/dairy-free-ice-cream'
+def scraper(url):
+    
+    base = 'https://www.ethicalconsumer.org'
+    url = base + url
     response = requests.get(url)
     print(response)
 
@@ -36,5 +37,27 @@ def scraper(url)
     for div in bad:
         scores.append(div.contents[0].strip())
 
-    asdf = dict(zip(companies,scores))
-    print(asdf.keys())
+    directory = dict(zip(companies,scores))
+    
+    return(directory)
+    
+    
+
+category = 'https://www.ethicalconsumer.org/food-drink'
+response = requests.get(category)
+print(response)
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+#print(soup)
+
+buttons = soup.findAll("a", {"class": "btn btn-ecra btn"})
+
+links = []
+for guide in buttons:
+    links.append(guide['href'])
+    
+bigDict = {}
+for link in links:
+    bigDict.update(scraper(link))
+
