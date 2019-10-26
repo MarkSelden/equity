@@ -1,29 +1,23 @@
 
 
-
-/* storage func 
-chrome.storage.local.set({key: value}, function() {
-          console.log('Value is set to ' + value);
-        });
-
-
-*/
 function storeVal() {
+	console.log(2);
 	var name = document.getElementById("bylineInfo").text;
+	console.log(name)
 	chrome.storage.local.set({"company": name }, function() {
 	          console.log('company is set to ' + name);
 	        });
 
 
-	alert(chrome.storage.local.get(['company'], function(result) {
-	          console.log('Value currently is ' + result.key);
-	        }));
 
 }
 
+console.log("1");
 
-document.addEventListener('DOMContentLoaded', function () {
-  storeVal();
+
+document.addEventListener('DOMContentLoaded', function() {
+	console.log("2");
+  	storeVal();
 });
 
 /* 
