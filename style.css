@@ -1,0 +1,31 @@
+body {
+	height:auto;
+}
+
+h1 {
+	padding-top: 15px;
+	padding-bottom:5px;
+	text-align: center;
+}
+
+div#wrapper{
+	width: 400px;
+	display: flex;
+} 
+
+.column{
+	flex: 1;
+	text-align: center;
+	font-size: 15px;
+	padding: 10px;
+}
+
+div#product{
+	background-color:#fe8a71;
+	margin-right: 5px;
+}
+
+div#rating{
+	background-color:#f6cd61;
+	margin-left: 5px;
+}
