@@ -1,0 +1,1 @@
+var companies = require('./result.json');
