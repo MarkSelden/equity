@@ -2,6 +2,7 @@ import requests
 import urllib.request
 import time
 from bs4 import BeautifulSoup
+import json
 
 def scraper(url):
     
@@ -61,3 +62,5 @@ bigDict = {}
 for link in links:
     bigDict.update(scraper(link))
 
+with open('result.json', 'w') as fp:
+    json.dump(bigDict, fp)
