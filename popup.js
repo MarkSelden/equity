@@ -32,6 +32,18 @@ const setScore =  key => {
 		score = data.ratings[key];
 		//injects score into rating element in Html
 	  	$('#rating').append(score);  	
+
+	  	var num = Number(score);
+
+	  	if (num <= 5){
+	  		document.getElementById("rating").style.backgroundColor = "Red";
+	  	}else if (num <= 10){
+	  		document.getElementById("rating").style.backgroundColor = "Orange";
+	  	}else {
+	  		document.getElementById("rating").style.backgroundColor = "#99ff99";
+	  	}
+	  
+
 	});//storage.get rating
 };//end of the setScire declaration
 

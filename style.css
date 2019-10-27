@@ -1,31 +1,38 @@
+
 body {
-	height:auto;
+	width: 150px;
+	height: 150px;
+	background-color: #b3b3ff;
 }
+
 
 h1 {
-	padding-top: 15px;
-	padding-bottom:5px;
+	/*border of the equity name*/
+	/*border: 5px solid black;*/
+
+	/*equity text*/
 	text-align: center;
+	font-size: 25px;
+	letter-spacing:2px;
+	font-family: Luminari, Cabin, Trattatello, Jazz, Ariel;
+	color: black;
 }
 
-div#wrapper{
-	width: 400px;
-	display: flex;
-} 
-
-.column{
-	flex: 1;
+h2 {
 	text-align: center;
-	font-size: 15px;
-	padding: 10px;
+	font-size: 20px;
 }
 
-div#product{
-	background-color:#fe8a71;
-	margin-right: 5px;
+#product{
+	
+	height: 25px;
 }
 
-div#rating{
-	background-color:#f6cd61;
-	margin-left: 5px;
+#rating{
+	text-align: center;
+	margin-left: 15;
+	margin-right: 15;
+	height: 50;
+	width: 120;
+
 }
