@@ -28,21 +28,31 @@ const setScore =  key => {
 
 	//gets the ratings dictionary, more work in callback
 	chrome.storage.local.get('ratings', data => {
-		//sets score equal to the key(passed in) in the dictionary in data
-		score = data.ratings[key];
-		//injects score into rating element in Html
-	  	$('#rating').append(score);  	
 
-	  	var num = Number(score);
+		if (key in data.ratings){//checks to make we have data on the company 
 
-	  	if (num <= 5){
-	  		document.getElementById("rating").style.backgroundColor = "Red";
-	  	}else if (num <= 10){
-	  		document.getElementById("rating").style.backgroundColor = "Orange";
-	  	}else {
-	  		document.getElementById("rating").style.backgroundColor = "#99ff99";
-	  	}
+			//sets score equal to the key(passed in) in the dictionary in data
+			score = data.ratings[key];
+			//injects score into rating element in Html
+		  	$('#rating').append(score);  	
+
+		  	var num = Number(score);
+
+		  	if (num <= 5){
+		  		document.getElementById("rating").style.backgroundColor = "Red";
+		  	}else if (num <= 10){
+		  		document.getElementById("rating").style.backgroundColor = "Orange";
+		  	}else {
+		  		document.getElementById("rating").style.backgroundColor = "#99ff99";
+		  	}
 	  
+		}else{
+
+			$('#rating').append("Idk *Shrug*"); 
+	
+		}
+
+		
 
 	});//storage.get rating
 };//end of the setScire declaration
