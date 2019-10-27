@@ -19,7 +19,7 @@ def sub_scraper(url):
     for div in mydivs:
         products.append(div.contents[1].contents[0])
         fullText = div.getText()
-        actual = fullText[fullText.find(':') + 1:]
+        actual = fullText[fullText.find(':') + 2:]
         companyNames.append(actual)
         #companyNames.append(div.contents[1].contents[1])
         '''companyNames.append(div.contents[1].contents[1])'''
