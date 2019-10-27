@@ -1,59 +1,42 @@
-alert("popup.js is running");
+
 var supplier = "not yet found";
-console.log("console log works");
+var score = "not yet found";
 
-//sets up a promise so that it will assign the values and then afterwards we can call assignments
-const setCompany =  () => {
-	chrome.storage.local.get('company', (result) => {
-		alert("callback is running");
+
+//Injects both proper values into the html
+const setVals =  referee => {
+
+	//access company name, all the work happens in callback function
+	chrome.storage.local.get('company', result => {
+
+		//sets suplier 
 		supplier = result.company;
-		$('#product').append(supplier); 	
+		//injects into product element
+		$('#product').append(supplier);
+		//calls the helper function, to set the score(referee lol). Callback hell is neccessary for the referee function to have the proper company key
+		referee(supplier);
 
-});//end of promise callback function
+
+
+	});//end of promise callback function
+
 };//end of the setComp declaration
 
-const setScore =  () => {
-	chrome.storage.local.get('ratings', (result) => {
-		alert("SetScore running");
-		score = result.ratings[supplier];
+
+//Helper function for setting the ethics score 
+const setScore =  key => {
+
+	//gets the ratings dictionary, more work in callback
+	chrome.storage.local.get('ratings', data => {
+		//sets score equal to the key(passed in) in the dictionary in data
+		score = data.ratings[key];
+		//injects score into rating element in Html
 	  	$('#rating').append(score);  	
+	});//storage.get rating
+};//end of the setScire declaration
 
-});//end of promise callback function
-};//end of the setComp declaration
+setVals(setScore);
 
-
-
-setCompany();
-setScore();
-
- 	 
- 
-
- 
-
-
-
-
-
-/*
-'use strict';
-
-let changeColor = document.getElementById('changeColor');
-
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
-});
-
-changeColor.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.backgroundColor = "' + color + '";'});
-  });
-};
-*/
 
 
 
