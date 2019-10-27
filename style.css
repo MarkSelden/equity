@@ -1,0 +1,38 @@
+
+body {
+	width: 150px;
+	height: 150px;
+	background-color: #b3b3ff;
+}
+
+
+h1 {
+	/*border of the equity name*/
+	/*border: 5px solid black;*/
+
+	/*equity text*/
+	text-align: center;
+	font-size: 25px;
+	letter-spacing:2px;
+	font-family: Luminari, Cabin, Trattatello, Jazz, Ariel;
+	color: black;
+}
+
+h2 {
+	text-align: center;
+	font-size: 20px;
+}
+
+#product{
+	
+	height: 25px;
+}
+
+#rating{
+	text-align: center;
+	margin-left: 15;
+	margin-right: 15;
+	height: 50;
+	width: 120;
+
+}
