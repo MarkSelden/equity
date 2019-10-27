@@ -1,20 +1,22 @@
-function dumpRatings(query) {
-//insert mechanism for retrieving a products rating
-	console.log("4")
 
-  $('#product').append(companyName);
-  $('#rating').append(companyRatings[companyName]);
-}
 
-var companyName = chrome.storage.local.get(['company'], function(result) {
-          console.log('Value currently is ' + result.key);
-        });
-var companyRatings = chrome.storage.local.get(['ratings'], function(result) {
-	console.log("success");
-})
 
+
+
+//var companyRatings = chrome.storage.local.get(['ratings'], function(result) {
+	//console.log("success");
+//})
+console.log("4");
 document.addEventListener('DOMContentLoaded', function () {
-  dumpRatings();
+	console.log("4");
+	$('#product').append("jif");
+  	$('#rating').append("5");
+  	console.log("5");
+  	alert(chrome.storage.local.get(["company"], function(result) {
+  		console.log("6");
+  		alert(result.key);
+        }));
+
 });
 
 
