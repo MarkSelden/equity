@@ -4,7 +4,7 @@ function storeVal() {
 	console.log("3");
 	var name = document.getElementById("bylineInfo").text;
 	console.log(name)
-	chrome.storage.local.set({'company': name }, function() {
+	chrome.storage.local.set({"company": name }, function() {
 	          console.log('company is set to ' + name);
 	        });
 

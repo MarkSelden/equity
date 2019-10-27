@@ -1,4 +1,3 @@
-
 var supplier = "not yet found";
 var score = "not yet found";
 
@@ -58,7 +57,4 @@ const setScore =  key => {
 };//end of the setScire declaration
 
 setVals(setScore);
-
-
-
 
