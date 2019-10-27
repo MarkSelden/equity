@@ -2,17 +2,11 @@ import requests
 import urllib.request
 import time
 from bs4 import BeautifulSoup
-<<<<<<< HEAD
-=======
 import json
->>>>>>> 51e9ed203c57f4af0f4b1eaeab3cde10bc9e0ddd
 
-def scraper(url):
-    
-    base = 'https://www.ethicalconsumer.org'
-    url = base + url
+all_companies = {}
+def sub_scraper(url):
     response = requests.get(url)
-    print(response)
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -20,19 +14,25 @@ def scraper(url):
 
     mydivs = soup.findAll("div", {"class": "product-company"})
 
-    companies = []
+    products = []
+    companyNames = []
     for div in mydivs:
-        companies.append(div.contents[1].contents[0])
+        products.append(div.contents[1].contents[0])
+        fullText = div.getText()
+        actual = fullText[fullText.find(':') + 1:]
+        companyNames.append(actual)
+        #companyNames.append(div.contents[1].contents[1])
+        '''companyNames.append(div.contents[1].contents[1])'''
 
-
+    #print(companyNames)
+    
     good = soup.findAll("div", {"class": "score good"})
     average = soup.findAll("div", {"class": "score average"})
     bad = soup.findAll("div", {"class": "score bad"})
 
-
     scores = []
-
     for div in good:
+
         scores.append(div.contents[0].strip())
 
     for div in average:
@@ -41,32 +41,34 @@ def scraper(url):
     for div in bad:
         scores.append(div.contents[0].strip())
 
-    directory = dict(zip(companies,scores))
-    
-    return(directory)
-    
-    
+    sub_companies = dict(zip(companyNames,scores))
+    all_companies.update(sub_companies)
 
-category = 'https://www.ethicalconsumer.org/food-drink'
-response = requests.get(category)
-print(response)
+def get_all_subcategories(categoryURL):
+    response = requests.get(categoryURL)
 
-soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, 'html.parser')
 
-#print(soup)
+    buttons = soup.findAll("a", {"class": "btn btn-ecra btn"})
 
-buttons = soup.findAll("a", {"class": "btn btn-ecra btn"})
+    sub_links = []
+    for guide in buttons:
+        sub_links.append(guide['href'])
+    for i in sub_links:
+        sub_scraper('https://www.ethicalconsumer.org/' + i)
+    print("ur great")
 
-links = []
-for guide in buttons:
-    links.append(guide['href'])
-    
-bigDict = {}
-for link in links:
-    bigDict.update(scraper(link))
+fat_categories  = ['https://www.ethicalconsumer.org/energy','https://www.ethicalconsumer.org/fashion-clothing',
+'https://www.ethicalconsumer.org/fashion-clothing','https://www.ethicalconsumer.org/food-drink',
+'https://www.ethicalconsumer.org/health-beauty','https://www.ethicalconsumer.org/home-garden',
+'https://www.ethicalconsumer.org/money-finance','https://www.ethicalconsumer.org/retailers',
+'https://www.ethicalconsumer.org/technology','https://www.ethicalconsumer.org/transport-travel']
 
-<<<<<<< HEAD
-=======
+for f in fat_categories:
+    get_all_subcategories(f)
+
 with open('result.json', 'w') as fp:
-    json.dump(bigDict, fp)
->>>>>>> 51e9ed203c57f4af0f4b1eaeab3cde10bc9e0ddd
+    json.dump(all_companies, fp)
+
+
+print(all_companies)
